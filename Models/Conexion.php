@@ -7,7 +7,7 @@ class conexion
 	"Host"=>"localhost",
 	"User"=>"root",
 	"pass"=>"",
-	"db"=>""
+	"db"=>"php_poo"
 	);
 
 	private $con;

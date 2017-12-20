@@ -18,7 +18,11 @@ $this->con=new Conexion();
 
 	public functionlistar(){
 
-$sql="SELECT t1.*,t2.nombre as nombre_seccion from estudiante t1 inner join seccion t2 ont1.id_seccion=t2.id"
+$sql="SELECT t1.*,t2.nombre AS nombre_seccion 
+	  FROM estudiantes t1 
+	  INNER JOIN secciones t2 
+	  ON t1.id_seccion=t2.id";
+
 $datos=$this->con->consultarRetorno($sql);
 return $datos;
 	}
@@ -27,28 +31,39 @@ return $datos;
 public function add(){
 
 
-	$sql="insert onto estudiantes(id,nombre,promedio,imagen)
-			values()";
+	$sql="INSERT INTO estudiantes(nombre,edad,promedio,imagen)
+		  VALUES('{$this->nombre}','{$this->edad}',
+		  '{$this->promedio}','{$this->nombre}')";
+
+		    $this->con->consultaSimple($sql);
 
 }
 
 public function delete(){
 
-$sql="insert onto estudiantes(id,nombre,promedio,imagen)
-			values()";
-			$this->con->consultaSimple();
+$sql="DELETE FROM estudiantes 
+	  WHERE id='{$this->nombre}';";
+
+	   $this->con->consultaSimple($sql);
 }
 
 public function edit(){
-	$sql="UPDATE from ESTUDIANTES set NOMBRE={$this->nombre},edad='{$this->edad}',promedio={$this->promedio},id_seccion={$this->id_seccion} where id={$this->id}"
+	$sql="UPDATE estudiantes 
+		  SET nombre='{$this->nombre}',edad='{$this->edad}',
+		  promedio='{$this->promedio}',id_seccion='{$this->id_seccion}' 
+	      WHERE id='{$this->id}'";
+	$this->con->consultaSimple($sql);      
 }
 
 public function view(){
 
-$sql="SELECT t1.*,t2.nombre as nombre_seccion fro  estudiantes t1 INNSER JOIN secciones t2 on t1.id_seccion=t2.id where id='{$this->id}'"
+$sql="SELECT t1.*,t2.nombre AS nombre_seccion 
+	  FROM estudiantes t1 
+      INNER JOIN secciones t2 ON t1.id_seccion=t2.id 
+	  WHERE t2.id='{$this->id}'";
 
 $datos=$this->con->consultaRetorno($sql);
-return datos;
+return $datos;
 }
 
 
